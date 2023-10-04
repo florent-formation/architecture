@@ -1,7 +1,8 @@
+// https://github.com/florent-formation/architecture.git
+
 const express = require("express");
 const fs      = require("fs");
 const path    = require("path");
-const ejs     = require("ejs");
 const app     = express();
 const port    = 3000;
 
@@ -13,6 +14,10 @@ const viewPath       = path.join( __dirname , "views" );
 app.set("view engine",'ejs')
 app.set("views", viewPath)
 app.use(express.static(staticPath))
+app.use((req,res,next) => {
+    res.data = {}
+    return next()
+})
 
 for (const fileName of fs.readdirSync(controllerPath)){
     const filePath   = path.join(controllerPath,fileName);
@@ -35,7 +40,7 @@ app.use((req,res, next) => {
         req.url = "/index"
     }
 
-    res.render(req.url.replace("/",""))
+    res.render(req.url.replace("/",""),res.data)
 })
 
 

@@ -3,8 +3,28 @@
     <head>
         <meta charset="utf-8">
         <title>Ma Super TODO</title>
+        <link rel="stylesheet" type="text/css" href="/css/theme.css">
     </head>
     <body>
-        <h1>Hello Index</h1>
+        
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+
+            <% if(typeof prenom === "undefined"){ %>
+                <h1>Hello World</h1>
+            <% } else { %>
+                <h1>Hello <%= prenom %></h1>
+            <% } %>
+        </main>
+
     </body>
 </html>
