@@ -26,7 +26,15 @@ app.use(express.urlencoded({extended:true}))
 
 app.use(express.static(staticPath))
 app.use((req,res,next) => {
-    res.data = {}
+
+    if(!req.session.errors){
+        req.session.errors = {}
+    }
+
+    res.data = {
+        url: req.url,
+        session: req.session
+    }
     return next()
 })
 

@@ -11,17 +11,21 @@
             <nav>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Register</a></li>
+                    <% if(!session || !session.user){ %>
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/register">Register</a></li>
+                    <% } else { %>
+                        <li><a href="/logout">Logout</a></li>
+                    <% } %>
                 </ul>
             </nav>
         </header>
 
         <main>
-            <% if(typeof prenom === "undefined"){ %>
+            <% if(!session || !session.user){ %>
                 <h1>Hello World</h1>
             <% } else { %>
-                <h1>Hello <%= prenom %></h1>
+                <h1>Hello <%= session.user.firstName %></h1>
             <% } %>
         </main>
 

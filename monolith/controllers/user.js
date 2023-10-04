@@ -7,7 +7,21 @@ class User {
      *  @method=POST
      */
     static auth(req, res) {
-        res.end()
+        db.findOne({
+            login:    req.body.login,
+            password: req.body.password
+        },(err, user) =>{
+            if (user){
+                req.session.user = user
+                return res.redirect("/")
+            }
+
+            req.session.errors["/login"] = [
+                "Les identifiants de connection ne sont pas valide"
+            ]
+
+            res.redirect("/login")
+        })
     }
 
     /** 
@@ -19,8 +33,8 @@ class User {
         db.findOne({
             login:    req.body.login,
             password: req.body.password
-        },(err, doc) =>{
-            if (!doc){
+        },(err, user) =>{
+            if (!user){
                 db.insert(req.body,(err) =>{
                     res.redirect(err ? "/register" : "/login") 
                 })

@@ -18,6 +18,15 @@
         </header>
 
         <main>
+
+            <ul>
+                <% if(session && session.errors && session.errors[url]){ %>
+                    <% session.errors[url].forEach((error) => { %>
+                    <li><%= error %></li>
+                    <% }); %>
+                <% } %>
+            </ul>
+
             <form action="/user/auth" method="POST">
                 <div>
                     <label for="login">Login</label>
@@ -25,7 +34,7 @@
                 </div>
                 <div>
                     <label for="password">Password</label>
-                    <input id="password" name="password" type="text">
+                    <input id="password" name="password" type="password">
                 </div>
                 <div>
                     <button type="submit">Login</button>
