@@ -1,5 +1,4 @@
-const Datastore = require("nedb")
-const db = new Datastore({filename: __dirname + "/../.db/user", autoload: true})
+const ModelUser = require("../models/user")
 
 class User {
     /** 
@@ -7,7 +6,7 @@ class User {
      *  @method=POST
      */
     static auth(req, res) {
-        db.findOne({
+        ModelUser.findOne({
             login:    req.body.login,
             password: req.body.password
         },(err, user) =>{
@@ -28,22 +27,12 @@ class User {
      *  @url=/user
      *  @method=POST
      */
-    static register(req, res) {
+    static async register(req, res) {
         // Securise les données
-        db.findOne({
-            login:    req.body.login,
-            password: req.body.password
-        },(err, user) =>{
-            if (!user){
-                db.insert(req.body,(err) =>{
-                    res.redirect(err ? "/register" : "/login") 
-                })
-                return 
-            }
+        let u = new ModelUser(req.body)
+        let result = await u.save()
 
-            res.redirect("/login")
-        })
-        
+        res.redirect(result ? "/login": "/register")
     }
 }
 
