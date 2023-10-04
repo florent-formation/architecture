@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ma Super TODO</title>
+        <link rel="stylesheet" type="text/css" href="/css/theme.css">
+    </head>
+    <body>
+        
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <form action="/user" method="POST">
+                <div>
+                    <label for="firstName">FirstName</label>
+                    <input id="firstName" name="firstName" type="text">
+                </div>
+                <div>
+                    <label for="lastName">LastName</label>
+                    <input id="lastName" name="lastName" type="text">
+                </div>
+                <div>
+                    <label for="login">Login</label>
+                    <input id="login" name="login" type="text">
+                </div>
+                <div>
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="text">
+                </div>
+                <div>
+                    <button type="submit">Register</button>
+                </div>
+            </form>
+        </main>
+
+    </body>
+</html>

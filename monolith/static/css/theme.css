@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background: black;
+}
+
+header ul {
+    display: flex;
+    list-style: none;
+}
+
+header a {
+    color: white;
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+}
+
+header a:hover {
+    background: white;
+    color: black;
+}
+
+form {
+    margin: auto;
+    width: 400px;
+    border: 1px solid black;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+form div:not(:last-child) {
+    display: flex;
+    margin-bottom:10px;
+}
+
+form div label {
+    flex: 1;
+}
+
+form div input {
+    flex: 3;
+    border-bottom: 1px solid black;
+}
+
+form button {
+    border: 1px solid black;
+    background: white;
+    width: 100%;
+    margin-top: 10px;
+    padding: 5px 10px;
+}
+
+form button:hover{
+    background: black;
+    color:white;
+    cursor: pointer;
+}
