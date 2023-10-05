@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+html,body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 header {
     background: black;
 }
@@ -63,4 +67,35 @@ form button:hover{
     background: black;
     color:white;
     cursor: pointer;
+}
+
+.wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 400px;
+    margin: auto;
+}
+
+.button {
+    background: white;
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.button:hover {
+    background: black;
+    color: white;
+}
+
+.red {
+    border: 1px solid rgb(126, 7, 7);
+    background: rgb(175, 46, 46);
+    color: white;
 }
