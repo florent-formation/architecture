@@ -14,8 +14,22 @@
                 <h1>Hello World</h1>
             <% } else { %>
                 <h1>Hello <%= session.user.firstName %></h1>
-            <% } %>
+                <div>
+                    <ul>
+                        <li>task 1</li>
+                        <li>task 2</li>
+                    </ul>
 
+                    <form action="/task" method="POST">
+                        <input type="text">
+                        <button>Add</button>
+                    </form>
+                </div>
+
+
+
+
+            <% } %>
         </main>
 
     </body>
