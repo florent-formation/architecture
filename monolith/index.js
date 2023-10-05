@@ -4,6 +4,7 @@ const express = require("express");
 const session = require("express-session");
 const fs      = require("fs");
 const path    = require("path");
+const User = require("./models/user");
 const app     = express();
 const port    = 3000;
 
@@ -31,10 +32,15 @@ app.use((req,res,next) => {
         req.session.errors = {}
     }
 
+    if (req.session.user){
+        req.session.user = new User(req.session.user)
+    }
+
     res.data = {
         url: req.url,
         session: req.session
     }
+
     return next()
 })
 

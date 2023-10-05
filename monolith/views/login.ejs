@@ -7,15 +7,7 @@
     </head>
     <body>
         
-        <header>
-            <nav>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Register</a></li>
-                </ul>
-            </nav>
-        </header>
+        <%- include("fragments/header.ejs"); %>
 
         <main>
 
@@ -30,11 +22,11 @@
             <form action="/user/auth" method="POST">
                 <div>
                     <label for="login">Login</label>
-                    <input id="login" name="login" type="text">
+                    <input id="login" name="login" type="text" value="hello">
                 </div>
                 <div>
                     <label for="password">Password</label>
-                    <input id="password" name="password" type="password">
+                    <input id="password" name="password" type="password" value="hello">
                 </div>
                 <div>
                     <button type="submit">Login</button>

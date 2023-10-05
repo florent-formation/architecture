@@ -7,15 +7,12 @@
     </head>
     <body>
         
-        <%- include("fragments/header.ejs"); %>
+        <%- include("../fragments/header.ejs"); %>
 
         <main>
-            <% if(!session || !session.user){ %>
-                <h1>Hello World</h1>
-            <% } else { %>
-                <h1>Hello <%= session.user.firstName %></h1>
-            <% } %>
-
+            <div class="wrapper">
+                <a href="/user/delete" class="button">Delete Profile</a>
+            </div>
         </main>
 
     </body>

@@ -7,7 +7,6 @@ class User {
      */
     static async auth(req, res) {
         let user = await ModelUser.findOne({login:req.body.login, password: req.body.password})
-        console.log(user)
         if (user){
             req.session.user = user
             return res.redirect("/")
@@ -33,6 +32,33 @@ class User {
 
         user = new ModelUser(req.body)
         res.redirect(user.save() ? "/login": "/register")
+    }
+
+    /** 
+     *  @url=/logout
+     *  @method=GET
+     */
+    static async logout(req, res) {
+        // Securise les données
+        req.session.destroy();
+        res.redirect("/")
+    }
+
+
+    /** 
+     *  @url=/user/delete
+     *  @method=GET
+     */
+    static async delete(req, res) {
+        // Securise les données
+        if (!req.session.user){
+            return res.redirect("/login")
+        }
+
+        console.log(req.session.user)
+
+        req.session.user.delete()
+        res.redirect("/logout")
     }
 }
 

@@ -1,0 +1,14 @@
+<header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <% if(!session || !session.user){ %>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            <% } else { %>
+                <li><a href="/user/profile">Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            <% } %>
+        </ul>
+    </nav>
+</header>

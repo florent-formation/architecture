@@ -18,10 +18,8 @@ class User {
     }
 
     static async findOne(query){
-        console.log(query)
         return new Promise((resolve,reject) => {
             db.findOne(query, (err,doc) => {
-                console.log(err,doc)
                 if (err){
                     return reject(err)
                 }
@@ -51,6 +49,14 @@ class User {
         })
     }
 
+    async delete(){
+        return new Promise((resolve, reject) => {
+            db.remove({_id: this._id},(err) => {
+                err ? reject(false) : resolve(true)
+            })
+        })
+    }
+
     async save(){        
         return new Promise((resolve, reject) => {
             if (this._id){
@@ -63,7 +69,6 @@ class User {
                 })
             }
         })
-
     }
 
 }
