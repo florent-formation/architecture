@@ -30,7 +30,7 @@ header a:hover {
     color: black;
 }
 
-[data-page="login"]form {
+[data-page="login"] form {
     margin: auto;
     width: 400px;
     border: 1px solid black;
@@ -41,21 +41,21 @@ header a:hover {
     transform: translate(-50%,-50%);
 }
 
-[data-page="login"]form div:not(:last-child) {
+[data-page="login"] form div:not(:last-child) {
     display: flex;
     margin-bottom:10px;
 }
 
-[data-page="login"]form div label {
+[data-page="login"] form div label {
     flex: 1;
 }
 
-[data-page="login"]form div input {
+[data-page="login"] form div input {
     flex: 3;
     border-bottom: 1px solid black;
 }
 
-[data-page="login"]form button {
+[data-page="login"] form button {
     border: 1px solid black;
     background: white;
     width: 100%;
@@ -63,7 +63,7 @@ header a:hover {
     padding: 5px 10px;
 }
 
-[data-page="login"]form button:hover{
+[data-page="login"] form button:hover{
     background: black;
     color:white;
     cursor: pointer;
