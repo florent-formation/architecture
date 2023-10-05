@@ -5,22 +5,18 @@ class User {
      *  @url=/user/auth
      *  @method=POST
      */
-    static auth(req, res) {
-        ModelUser.findOne({
-            login:    req.body.login,
-            password: req.body.password
-        },(err, user) =>{
-            if (user){
-                req.session.user = user
-                return res.redirect("/")
-            }
+    static async auth(req, res) {
+        let user = await ModelUser.findOne({login:req.login, password: req.body.password})
+        if (user){
+            req.session.user = user
+            return res.redirect("/")
+        }
 
-            req.session.errors["/login"] = [
-                "Les identifiants de connection ne sont pas valide"
-            ]
+        req.session.errors["/login"] = [
+            "Les identifiants de connection ne sont pas valide"
+        ]
 
-            res.redirect("/login")
-        })
+        res.redirect("/login")
     }
 
     /** 
@@ -29,10 +25,13 @@ class User {
      */
     static async register(req, res) {
         // Securise les données
-        let u = new ModelUser(req.body)
-        let result = await u.save()
+        let user = await ModelUser.findOne({login:req.login, password: req.body.password})
+        if (user){
+            return res.redirect("/login")
+        }
 
-        res.redirect(result ? "/login": "/register")
+        user = new ModelUser(req.body)
+        res.redirect(user.save() ? "/login": "/register")
     }
 }
 

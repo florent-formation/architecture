@@ -9,45 +9,57 @@ class User {
     login
     password
 
-    constructor(config){
+    constructor(config  = {}){
+        this._id        = config._id
         this.firstName  = config.firstName
         this.lastName   = config.lastName
         this.login      = config.login
         this.password   = config.password
     }
 
-    static findOne(query, callback){
-        return db.findOne(query, callback)
-    }
-
-    static find(query, callback){
-        return db.find(query, callback)
-    }
-
-    static create(config = {}){
-        new this(config)
-    }
-
-    save(){        
-        return new Promise((resolve, reject) => {
-            this.constructor.findOne({
-                login: this.login,
-                password: this.password,
-            },(err, doc) => {
-                if (!err){
-                    return reject(false)
+    static async findOne(query){
+        return new Promise((resolve,reject) => {
+            db.findOne(query, (err,doc) => {
+                if (err){
+                    return reject(err)
                 }
 
-                if (this._id){
-                    db.update({_id:this._id},this,(err) => {
-                        err ? reject(false) : resolve(true)
-                    })
-                } else {
-                    db.insert(this,(err) =>{
-                        err ? reject(false) : resolve(true)
-                    })
+                if (!doc){
+                    return resolve(doc)
                 }
+
+                resolve(new this(doc))
             })
+        })
+    }
+
+    static find(query){
+        return new Promise((resolve,reject) => {
+            db.findOne(query, (err,doc) => {
+                if (err){
+                    return reject(err)
+                }
+
+                if (!doc){
+                    return resolve(doc)
+                }
+
+                resolve(new this(doc))
+            })
+        })
+    }
+
+    async save(){        
+        return new Promise((resolve, reject) => {
+            if (this._id){
+                db.update({_id: this._id},this,(err) => {
+                    err ? reject(false) : resolve(true)
+                })
+            } else {
+                db.insert(this,(err) =>{
+                    err ? reject(false) : resolve(true)
+                })
+            }
         })
 
     }

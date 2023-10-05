@@ -71,7 +71,7 @@ app.listen(port,() => {
 function extractRoutes(str) {
     const routes = [];
     let currentRoute = {};
-    const regex = /@url\s?=\s?(.*)|@method\s?=\s?(.*)|static\s(.*)\s?\(/g;
+    const regex = /@url\s?=\s?(.*)|@method\s?=\s?(.*)|static\s(?:async\s)?(.*)\s?\(/g;
     let match;
 
     while ((match = regex.exec(str)) !== null) {
