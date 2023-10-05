@@ -55,8 +55,6 @@ class User {
             return res.redirect("/login")
         }
 
-        console.log(req.session.user)
-
         req.session.user.delete()
         res.redirect("/logout")
     }

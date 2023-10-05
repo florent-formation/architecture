@@ -16,13 +16,22 @@
                 <div class="wrapper">
                     <h1>Hello <%= session.user.firstName %></h1>
                     
+                    <% if(tasks.length > 0){ %>
                     <ul>
-                        <li>task 1 <a href="/task/check">check</a></li>
-                        <li>task 2 <a href="/task/delete">delete</a></li>
+                        <% tasks.forEach((task) => { %>
+                            <li><%= task.value %> 
+                                <% if(task.check){ %>
+                                    <a href="/task/delete/<%= task._id %>">delete</a>
+                                <% } else { %>
+                                    <a href="/task/check/<%= task._id %>">check</a>
+                                <% } %>
+                            </li>
+                        <% }); %>
                     </ul>
+                    <% } %>
 
                     <form action="/task" method="POST">
-                        <input type="text"><button>Add</button>
+                        <input type="text" name="value"><button>Add</button>
                     </form>
                 </div>
 

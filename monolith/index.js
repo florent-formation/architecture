@@ -16,17 +16,23 @@ const viewPath       = path.join( __dirname , "views" );
 app.set("view engine",'ejs')
 app.set("views", viewPath)
 
+app.use(express.static(staticPath))
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
 app.use(session({
     resave: false,
     secret: '@Ck34CMDaFD&okiQm6@&',
     saveUninitialized: true,
 }))
-
-app.use(express.json())
-app.use(express.urlencoded({extended:true}))
-
-app.use(express.static(staticPath))
 app.use((req,res,next) => {
+
+    if (path.extname(req.url) !== "") {
+        return next()
+    } 
+
+    if (req.url === "/"){
+        req.url = "/index"
+    }
 
     if(!req.session.errors){
         req.session.errors = {}
@@ -57,14 +63,6 @@ for (const fileName of fs.readdirSync(controllerPath)){
 app.use((req,res, next) => {
     // /            => index       => index.ejs
     // /hello/world => hello/world => hello/world.ejs
-    if (path.extname(req.url) !== "") {
-        return next()
-    } 
-
-    if (req.url === "/"){
-        req.url = "/index"
-    }
-
     res.render(req.url.replace("/",""),res.data)
 })
 

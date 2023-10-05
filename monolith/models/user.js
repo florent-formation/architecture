@@ -35,7 +35,7 @@ class User {
 
     static find(query){
         return new Promise((resolve,reject) => {
-            db.findOne(query, (err,doc) => {
+            db.find(query, (err,doc) => {
                 if (err){
                     return reject(err)
                 }
@@ -44,7 +44,11 @@ class User {
                     return resolve(doc)
                 }
 
-                resolve(new this(doc))
+                let result = []
+                for (let data of doc){
+                    result.push(new this(data))
+                }
+                resolve(result)
             })
         })
     }
