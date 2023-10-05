@@ -6,7 +6,8 @@ class User {
      *  @method=POST
      */
     static async auth(req, res) {
-        let user = await ModelUser.findOne({login:req.login, password: req.body.password})
+        let user = await ModelUser.findOne({login:req.body.login, password: req.body.password})
+        console.log(user)
         if (user){
             req.session.user = user
             return res.redirect("/")
@@ -25,7 +26,7 @@ class User {
      */
     static async register(req, res) {
         // Securise les données
-        let user = await ModelUser.findOne({login:req.login, password: req.body.password})
+        let user = await ModelUser.findOne({login:req.body.login, password: req.body.password})
         if (user){
             return res.redirect("/login")
         }

@@ -18,8 +18,10 @@ class User {
     }
 
     static async findOne(query){
+        console.log(query)
         return new Promise((resolve,reject) => {
             db.findOne(query, (err,doc) => {
+                console.log(err,doc)
                 if (err){
                     return reject(err)
                 }
