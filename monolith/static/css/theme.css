@@ -30,7 +30,7 @@ header a:hover {
     color: black;
 }
 
-form {
+[data-page="login"]form {
     margin: auto;
     width: 400px;
     border: 1px solid black;
@@ -41,21 +41,21 @@ form {
     transform: translate(-50%,-50%);
 }
 
-form div:not(:last-child) {
+[data-page="login"]form div:not(:last-child) {
     display: flex;
     margin-bottom:10px;
 }
 
-form div label {
+[data-page="login"]form div label {
     flex: 1;
 }
 
-form div input {
+[data-page="login"]form div input {
     flex: 3;
     border-bottom: 1px solid black;
 }
 
-form button {
+[data-page="login"]form button {
     border: 1px solid black;
     background: white;
     width: 100%;
@@ -63,7 +63,7 @@ form button {
     padding: 5px 10px;
 }
 
-form button:hover{
+[data-page="login"]form button:hover{
     background: black;
     color:white;
     cursor: pointer;
@@ -98,4 +98,56 @@ form button:hover{
     border: 1px solid rgb(126, 7, 7);
     background: rgb(175, 46, 46);
     color: white;
+}
+
+[data-page="index"] .wrapper h1{
+    text-align: center;
+}
+
+[data-page="index"] .wrapper ul {
+    list-style: none;
+    border: 1px solid black;
+}
+
+[data-page="index"] .wrapper ul li{
+    position: relative;
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+
+
+[data-page="index"] .wrapper li:last-child{
+    border-bottom: 0;
+}
+
+[data-page="index"] .wrapper li a{
+    position: absolute;
+    right: 5px;
+    top:5px;
+    text-decoration: none;
+    color: white;
+    background: black;
+    padding: 5px;
+}
+
+[data-page="index"] .wrapper form{
+    margin-top: 10px;
+    display: flex;
+}
+
+[data-page="index"] .wrapper input {
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    width: 100%;
+    outline: none;
+}
+
+[data-page="index"] .wrapper button {
+    padding: 5px;
+    display: block;
+    border: 1px solid black;
+    background: black;
+    color: white;
+    cursor: pointer;
 }

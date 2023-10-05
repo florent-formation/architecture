@@ -5,7 +5,7 @@
         <title>Ma Super TODO</title>
         <link rel="stylesheet" type="text/css" href="/css/theme.css">
     </head>
-    <body>
+    <body data-page="index">
         
         <%- include("fragments/header.ejs"); %>
 
@@ -13,21 +13,18 @@
             <% if(!session || !session.user){ %>
                 <h1>Hello World</h1>
             <% } else { %>
-                <h1>Hello <%= session.user.firstName %></h1>
-                <div>
+                <div class="wrapper">
+                    <h1>Hello <%= session.user.firstName %></h1>
+                    
                     <ul>
-                        <li>task 1</li>
-                        <li>task 2</li>
+                        <li>task 1 <a href="/task/check">check</a></li>
+                        <li>task 2 <a href="/task/delete">delete</a></li>
                     </ul>
 
                     <form action="/task" method="POST">
-                        <input type="text">
-                        <button>Add</button>
+                        <input type="text"><button>Add</button>
                     </form>
                 </div>
-
-
-
 
             <% } %>
         </main>
