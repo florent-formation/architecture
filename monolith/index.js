@@ -4,7 +4,7 @@ const express = require("express");
 const session = require("express-session");
 const fs      = require("fs");
 const path    = require("path");
-const User = require("./models/user");
+const User    = require("./models/user");
 const app     = express();
 const port    = 3000;
 

@@ -1,0 +1,51 @@
+version: "3.8"
+
+volumes:
+  database:
+
+networks:
+  public:
+  private:
+    internal: true
+
+services:
+  cdn:
+    restart: always
+    container_name: cdn.localhost
+    image: architecture:cdn
+    networks:
+      - public
+    build:
+      dockerfile: deploy/services/Dockerfile.cdn
+      context: ../../
+
+  task:
+    restart: always
+    container_name: task.localhost
+    image: architecture:task
+    networks:
+      - public
+      - private
+    build:
+      dockerfile: deploy/services/Dockerfile.task
+      context: ../../
+    volumes:
+      - database:/var/run/app/.db
+      
+  user:
+    restart: always
+    container_name: user.localhost
+    image: architecture:user
+    networks:
+      - public
+      - private
+    build:
+      dockerfile: deploy/services/Dockerfile.user
+      context: ../../
+    volumes:
+      - database:/var/run/app/.db
+
+  # sql
+  #    networks:
+  #    - private
+  #
