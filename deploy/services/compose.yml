@@ -13,6 +13,8 @@ services:
     restart: always
     container_name: cdn.localhost
     image: architecture:cdn
+    ports:
+      - 3000:3000
     networks:
       - public
     build:
@@ -23,6 +25,8 @@ services:
     restart: always
     container_name: task.localhost
     image: architecture:task
+    ports:
+      - 3001:3000
     networks:
       - public
       - private
@@ -36,6 +40,8 @@ services:
     restart: always
     container_name: user.localhost
     image: architecture:user
+    ports:
+      - 3002:3000
     networks:
       - public
       - private

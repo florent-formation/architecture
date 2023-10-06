@@ -28,9 +28,15 @@ help: #Pour générer automatiquement l'aide ## Display all commands available
 	echo '╚──────────────────────────────────────────────────>'
 	echo ''
 
-build-monolith: ## Build monolith
-build-services: ## Build micro service
+
 build: build-monolith build-services ## Build All
 
-run-monolith: ## Run monolith project
-run-services: ## Run micro-service project
+build-monolith: ## Build monolith
+	docker build -t monolith -f deploy/monolith/Dockerfile
+build-services: ## Build micro service
+	docker compose -f deploy/services/compose.yml build
+
+run-monolith: build-monolith ## Run monolith project
+	docker run -ti -p 3000:3000 monolith
+run-services: build-services ## Run micro-service project
+	docker compose -f deploy/services/compose.yml up
