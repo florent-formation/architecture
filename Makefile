@@ -10,8 +10,6 @@
 ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
 $(eval $(ARGS):;@:)
 $(eval GWD=$(shell git rev-parse --show-toplevel 2>/dev/null || pwd))
-$(shell git config core.hooksPath $(GWD)/.github/hooks 2>/dev/null || true)
-$(shell chmod +x $(GWD)/.github/hooks/*)
 
 help: #Pour générer automatiquement l'aide ## Display all commands available
 	$(eval PADDING=$(shell grep -x -E '^[a-zA-Z_-]+:.*?##[\s]?.*$$' Makefile | awk '{ print length($$1)-1 }' | sort -n | tail -n 1))
@@ -32,7 +30,7 @@ help: #Pour générer automatiquement l'aide ## Display all commands available
 build: build-monolith build-services ## Build All
 
 build-monolith: ## Build monolith
-	docker build -t monolith -f deploy/monolith/Dockerfile
+	docker build -t monolith -f deploy/monolith/Dockerfile .
 build-services: ## Build micro service
 	docker compose -f deploy/services/compose.yml build
 
